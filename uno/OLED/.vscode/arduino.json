@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "/dev/tty.usbmodem1201",
+    "sketch": "ssd1306_128x64_i2c.ino"
+}

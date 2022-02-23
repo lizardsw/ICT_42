@@ -28,7 +28,7 @@
 #include <SoftwareSerial.h>
 #define button 5
 
-SoftwareSerial mySerial(10, 11); // RX, TX
+SoftwareSerial app(10, 11); // RX, TX
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -41,31 +41,34 @@ void setup() {
   Serial.println("Goodnight moon!");
 
   // set the data rate for the SoftwareSerial port
-  mySerial.begin(9600);
-  mySerial.println("Hello, world?");
+  app.begin(9600);
+  app.write(10000);
 }
-int buttonstate = LOW;
-int count = 0;
+unsigned int buttonstate = LOW;
+unsigned int count = 1000;
 void loop() { // run over and over
   
   buttonstate = digitalRead(button);
+  
   Serial.println(buttonstate);
   delay(500);
   if (buttonstate == HIGH)
   {
     Serial.println(count);
+    app.println(count);
     count++;
   }
+  /*
   if (count > 10)
   {
-    mySerial.println("up! 10");
+    app.write(count);
     count = 0;
   }
+  */
   if (Serial.available()) {
-    mySerial.println("come here!");
-    mySerial.write(Serial.read());
+    app.write(Serial.read());
   }
-  if (mySerial.available()) {
-    Serial.write(mySerial.read());
+  if (app.available()) {
+    Serial.write(app.read());
   }
 }
