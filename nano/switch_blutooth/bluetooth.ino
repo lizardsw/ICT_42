@@ -12,9 +12,11 @@ void setup() {
   app.write(10000);
 }
 unsigned int buttonstate = LOW;
-unsigned int count = 1000;
+unsigned int count = 0;
+unsigned int data = 0;
 void loop() { 
   
+  /*
   buttonstate = digitalRead(button);
   
   Serial.println(buttonstate);
@@ -25,11 +27,18 @@ void loop() {
     app.println(count);
     count++;
   }
-  
+  */
+  /*
   if (Serial.available()) {
     app.write(Serial.read());
   }
+  */
   if (app.available()) {
-    Serial.write(app.read());
+    data = app.read();
+    Serial.println("data : ");
+    Serial.println(data);
+    Serial.println("count : ");
+    Serial.println(count++);
   }
+  
 }
